@@ -1,0 +1,16 @@
+BINARY = a.out
+CC = clang
+CFLAGS = -Wall
+
+release: lua_flame.c
+	$(CC) lua_flame.c -llua5.4 -o $(BINARY)
+
+# -rdynamic this allows stacktraces to include func names
+debug: lua_flame.c
+	$(CC) -g -O0 -rdynamic lua_flame.c -llua5.4 -o $(BINARY)
+
+run: debug
+	./$(BINARY)
+
+clean:
+	rm -f $(BINARY)
