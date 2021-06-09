@@ -6,7 +6,7 @@ final String program = """
 max_x = 500
 min_x = 10
 
-function initialize()
+function onLoad()
   component_0_x = 50
   component_0_y = 5
   print('Lua app initialized!')
@@ -21,6 +21,6 @@ end
 """;
 
 void main() async {
-  final Plugin.LuaFlame game = Plugin.LuaFlame.forPlatform(program);
+  final Plugin.LuaFlame game = Plugin.LuaFlame(program);
   widgets.runApp(GameWidget(game: game));
 }
