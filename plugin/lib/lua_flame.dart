@@ -116,7 +116,7 @@ class LuaFlame extends game.Game {
   }
 }
 
-final ffi.DynamicLibrary dynamicLibrary = Platform.isMacOS ? ffi.DynamicLibrary.open('liblua5.4.dylib') : ffi.DynamicLibrary.open(
+final ffi.DynamicLibrary dynamicLibrary = Platform.isMacOS ? ffi.DynamicLibrary.process() : ffi.DynamicLibrary.open(
   'liblua_flame_plugin.so',
 );
 
