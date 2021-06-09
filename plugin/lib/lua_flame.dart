@@ -1,4 +1,5 @@
 import 'dart:ffi' as ffi;
+import 'dart:io';
 
 import 'package:ffi/ffi.dart' as pffi;
 import 'package:flame/game.dart' as game;
@@ -48,13 +49,6 @@ class LuaFlame extends game.Game {
     lib.lua_pushinteger(state!, 42);
 
     ffi.Pointer<ffi.Int8> charPtr = _stringToCharStar("answer");
-    lib.lua_setglobal(state!, charPtr);
-    pffi.malloc.free(charPtr);
-
-    // Push the pointer to the function
-    final moveRightThirtyPointer = dynamicLibrary.lookup<ffi.NativeFunction<ffi.Int32 Function(ffi.Pointer<bindings.lua_State>)>>("move_right_thirty");
-    lib.lua_pushcclosure(state!, moveRightThirtyPointer, 0);
-    charPtr = _stringToCharStar("move_right_thirty");
     lib.lua_setglobal(state!, charPtr);
     pffi.malloc.free(charPtr);
   }
@@ -122,7 +116,7 @@ class LuaFlame extends game.Game {
   }
 }
 
-final ffi.DynamicLibrary dynamicLibrary = ffi.DynamicLibrary.open(
+final ffi.DynamicLibrary dynamicLibrary = Platform.isMacOS ? ffi.DynamicLibrary.open('liblua5.4.dylib') : ffi.DynamicLibrary.open(
   'liblua_flame_plugin.so',
 );
 
