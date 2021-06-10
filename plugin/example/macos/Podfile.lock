@@ -1,0 +1,22 @@
+PODS:
+  - FlutterMacOS (1.0.0)
+  - lua_flame (0.0.1):
+    - FlutterMacOS
+
+DEPENDENCIES:
+  - FlutterMacOS (from `Flutter/ephemeral`)
+  - lua_flame (from `Flutter/ephemeral/.symlinks/plugins/lua_flame/macos`)
+
+EXTERNAL SOURCES:
+  FlutterMacOS:
+    :path: Flutter/ephemeral
+  lua_flame:
+    :path: Flutter/ephemeral/.symlinks/plugins/lua_flame/macos
+
+SPEC CHECKSUMS:
+  FlutterMacOS: 57701585bf7de1b3fc2bb61f6378d73bbdea8424
+  lua_flame: b84bc95fd346184c54ccf86179ef6658cedeb0f6
+
+PODFILE CHECKSUM: 6eac6b3292e5142cfc23bdeb71848a40ec51c14c
+
+COCOAPODS: 1.10.0
