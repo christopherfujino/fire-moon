@@ -13,9 +13,9 @@ A new flutter plugin project.
   s.license          = { :file => '../LICENSE' }
   s.author           = { 'Your Company' => 'email@example.com' }
   s.source           = { :path => '.' }
-  s.source_files = 'Classes/**/*.{h,m}','lua-src/*.{h,c}','lua-src/**/*.{h,c}'
+  s.source_files = 'Classes/**/*','lua-src/*.{h,c}','lua-src/**/*.{h,c}'
   s.private_header_files = 'lua-src/*.h','lua-src/**/*.h'
-  s.public_header_files = 'Classes/**/*.h'
+  s.public_header_files = 'Classes/**/*'
   s.dependency 'FlutterMacOS'
 
   s.platform = :osx, '10.11'

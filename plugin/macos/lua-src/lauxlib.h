@@ -12,7 +12,7 @@
 #include <stddef.h>
 #include <stdio.h>
 
-#include "flutter_platform.h"
+#include "luaconf.h"
 #include "lua.h"
 
 
@@ -131,10 +131,10 @@ LUALIB_API void (luaL_requiref) (lua_State *L, const char *modname,
   (luaL_checkversion(L), luaL_newlibtable(L,l), luaL_setfuncs(L,l,0))
 
 #define luaL_argcheck(L, cond,arg,extramsg)	\
-		((void)((cond) || luaL_argerror(L, (arg), (extramsg))))
+	((void)(luai_likely(cond) || luaL_argerror(L, (arg), (extramsg))))
 
 #define luaL_argexpected(L,cond,arg,tname)	\
-		((void)((cond) || luaL_typeerror(L, (arg), (tname))))
+	((void)(luai_likely(cond) || luaL_typeerror(L, (arg), (tname))))
 
 #define luaL_checkstring(L,n)	(luaL_checklstring(L, (n), NULL))
 #define luaL_optstring(L,n,d)	(luaL_optlstring(L, (n), (d), NULL))
@@ -156,6 +156,22 @@ LUALIB_API void (luaL_requiref) (lua_State *L, const char *modname,
 
 /* push the value used to represent failure/error */
 #define luaL_pushfail(L)	lua_pushnil(L)
+
+
+/*
+** Internal assertions for in-house debugging
+*/
+#if !defined(lua_assert)
+
+#if defined LUAI_ASSERT
+  #include <assert.h>
+  #define lua_assert(c)		assert(c)
+#else
+  #define lua_assert(c)		((void)0)
+#endif
+
+#endif
+
 
 
 /*
@@ -230,7 +246,23 @@ typedef struct luaL_Stream {
 ** "Abstraction Layer" for basic report of messages and errors
 ** ===================================================================
 */
-/* note: in flutter_luavm, lua_writestring, lua_writeline and lua_writestringerror is now a function */
+
+/* print a string */
+#if !defined(lua_writestring)
+#define lua_writestring(s,l)   fwrite((s), sizeof(char), (l), stdout)
+#endif
+
+/* print a newline and flush the output */
+#if !defined(lua_writeline)
+#define lua_writeline()        (lua_writestring("\n", 1), fflush(stdout))
+#endif
+
+/* print an error message */
+#if !defined(lua_writestringerror)
+#define lua_writestringerror(s,p) \
+        (fprintf(stderr, (s), (p)), fflush(stderr))
+#endif
+
 /* }================================================================== */
 
 
