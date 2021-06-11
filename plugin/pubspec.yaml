@@ -36,6 +36,8 @@ flutter:
     platforms:
       linux:
         pluginClass: LuaFlamePlugin
+      macos:
+        pluginClass: FireMoonPlugin 
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:
