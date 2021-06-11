@@ -4,7 +4,7 @@ import FlutterMacOS
 public class FireMoonPlugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {
     let channel = FlutterMethodChannel(name: "plugin", binaryMessenger: registrar.messenger)
-    let instance = Plugin()
+    let instance = FireMoonPlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
   }
 
