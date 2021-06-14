@@ -40,7 +40,7 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: master
+      ref: b5fc071d373c86131fa0e9c9beef5de7d7dc0d03
       resolved-ref: b5fc071d373c86131fa0e9c9beef5de7d7dc0d03
       url: "git@github.com:eseidel/code_field.git"
     source: git

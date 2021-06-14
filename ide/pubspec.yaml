@@ -22,7 +22,7 @@ dependencies:
   code_text_field:
     git:
       url: git@github.com:eseidel/code_field.git
-      ref: master
+      ref: b5fc071d373c86131fa0e9c9beef5de7d7dc0d03
   equatable: ^2.0.2
 
 dev_dependencies:
