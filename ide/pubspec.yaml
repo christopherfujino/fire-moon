@@ -1,0 +1,33 @@
+name: ide
+description: Fire Moon IDE
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+
+  lua_flame:
+    path: ../plugin
+  slices:
+    git:
+      url: git@github.com:erickzanardo/slices.git
+      ref: 7c2a374c9096e16226c697ba1d19528aaa501606
+  code_text_field:
+    git:
+      url: git@github.com:eseidel/code_field.git
+      ref: b5fc071d373c86131fa0e9c9beef5de7d7dc0d03
+  equatable: ^2.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
